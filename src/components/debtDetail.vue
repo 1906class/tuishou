@@ -1,7 +1,7 @@
 <template>
     <div class="debtDetail">
         <ul class="content">
-            <li v-for="(item,index) in list"
+            <li v-for="(item,index) in debtlist"
                 :key="index"
             >
                 <div class="top">
@@ -38,46 +38,24 @@
     </div>
 </template>
 <script>
-import Axios from 'axios';
+
 import BScroll from 'better-scroll';
 export default {
     data(){
         return {
-            list:[]
+            debtlist:[]
         }
     },
-    computed:{
-        
-    },
-    methods:{
-        initList(){
-            Axios.get('http://ts.365cf.com/api/creditor/sell/list?from=0&limit=18&callback=')
-            .then((res)=>{
-                console.log(res.data.data.list);
-                
-                this.getListData(res.data.data.list)
-            })
-            
-        },
-        getListData(data){
-            for (let index = 0; index < data.length; index++) {
-                if(data[index].status==3){
-                    data[index].stt = "可承接";
-                    data[index].sttbg ='http://ts.365cf.com/static/image/bg1.png'
-                }else if(data[index].status==4){
-                    data[index].stt = "锁定中";
-                    data[index].sttbg ='http://ts.365cf.com/static/image/bg2.png'
-                }else{
-                    data[index].stt = "已转让";
-                    data[index].sttbg ='http://ts.365cf.com/static/image/bg3.png'
-                } 
-            }
-            this.list = data;
+    props:['list'],
+    watch:{
+        list(next,prev){
+            // console.log(next,prev)
+            this.debtlist = next;
         }
     },
     mounted(){
-        this.initList();
         new BScroll('.debtDetail');
+        
     }
 }
 </script>

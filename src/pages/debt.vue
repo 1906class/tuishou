@@ -1,7 +1,7 @@
 <template>
   <div class="debt">
     <div class="header">
-      <span class="back">&lt;</span>
+      <span class="back" @click="$router.go(-1)">&lt;</span>
       <span class="tit">债权转让</span>
     </div>
     <div class="search-box-wrap">
@@ -12,15 +12,15 @@
     </div>
     <div class="like-list">
       <ul>
-        <li>最新</li>
-        <li>
+        <li @click="play('news')" :class='state=="news"?"self":""'>最新</li>
+        <li @click="play('sort')" :class='state=="sort"?"self":""'>
           <p>折扣金</p> 
           <span>
             <i>&lt;</i>
             <i>&gt;</i>
           </span>
         </li>
-        <li>
+        <li @click="play('order')" :class='state=="order"?"self":""'>
           <p>折扣</p>
           <span>
             <i>&lt;</i>
@@ -30,13 +30,77 @@
         <li>筛选</li>
       </ul>
     </div>
-    <router-view></router-view>
+    <!-- <DebtNav></DebtNav> --> 
+    <!-- <router-view></router-view> -->
+    <DebtDetail :list='lists'></DebtDetail>
   </div>
 </template>
 
 <script>
+import Axios from 'axios';
+import DebtDetail from 'components/debtDetail';
 export default {
-  
+  components:{
+    DebtDetail
+  },
+  data(){
+    return{
+      lists:[],
+      mid:'news',
+      state:'news'
+    }
+  },
+  methods:{
+    play(str){
+      this.state = str;
+      console.log(str)
+      this.initList(str);
+      this.mid = str;
+    },
+    initList(n){ 
+      
+      if(n=="news"){
+          Axios.get('http://ts.365cf.com/api/creditor/sell/list?from=0&limit=18&callback=')
+          .then((res)=>{
+          console.log(res.data.data.list);
+          this.getListData(res.data.data.list)
+          })
+      }
+      if(n=="sort"){
+          Axios.get('http://ts.365cf.com/api/creditor/sell/list?from=0&limit=6&callback=&sort=1&order=1')
+          .then((res)=>{
+          console.log(res.data.data.list);
+          this.getListData(res.data.data.list)
+          })
+      }
+      if(n=="order"){
+          Axios.get('http://ts.365cf.com/api/creditor/sell/list?from=0&limit=6&callback=&sort=1&order=2')
+          .then((res)=>{
+          console.log(res.data.data.list);
+          this.getListData(res.data.data.list)
+          })
+      }
+        
+    },
+    getListData(data){
+        for (let index = 0; index < data.length; index++) {
+            if(data[index].status==3){
+                data[index].stt = "可承接";
+                data[index].sttbg ='http://ts.365cf.com/static/image/bg1.png'
+            }else if(data[index].status==4){
+                data[index].stt = "锁定中";
+                data[index].sttbg ='http://ts.365cf.com/static/image/bg2.png'
+            }else{
+                data[index].stt = "已转让";
+                data[index].sttbg ='http://ts.365cf.com/static/image/bg3.png'
+            } 
+        }
+        this.lists = data;
+    }
+  },
+  mounted(){
+    this.initList(this.mid);
+  }
 }
 </script>
 <style lang="less" scoped>
@@ -114,6 +178,9 @@ export default {
             .l_h(12);
           }
         }
+      }
+      .self{
+        color: @font-color-black3;
       }
     }
   }
