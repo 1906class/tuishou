@@ -7,7 +7,7 @@
     <div class="search-box-wrap">
       <div class="search-box">
         <span class="icon"></span>
-        <input type="text" placeholder="请输入平台名称">
+        <input type="text" placeholder="请输入平台名称" v-model="content">
       </div>
     </div>
     <div class="like-list">
@@ -27,36 +27,60 @@
             <i>&gt;</i>
           </span>
         </li>
-        <li>筛选</li>
+        <li @click="toggle">筛选</li>
       </ul>
     </div>
     <!-- <DebtNav></DebtNav> --> 
     <!-- <router-view></router-view> -->
     <DebtDetail :list='lists'></DebtDetail>
+    <Filtrate v-if="show" :close='toggle'></Filtrate>
   </div>
 </template>
 
 <script>
 import Axios from 'axios';
 import DebtDetail from 'components/debtDetail';
+import Filtrate from 'components/filtrate';
 export default {
   components:{
-    DebtDetail
+    DebtDetail,
+    Filtrate
   },
   data(){
     return{
       lists:[],
       mid:'news',
-      state:'news'
+      state:'news',
+      show:false,
+      content:''
+    }
+  },
+  computed:{
+    searchData(){
+      var content = this.content;
+      Axios.get('http://ts.365cf.com/api/creditor/sell/list?from=0&limit=6&callback=&search='+content)
+      .then((res)=>{
+        console.log("search",res)
+      })
     }
   },
   methods:{
+    toggle(){
+      this.show = !this.show;
+      
+    },
     play(str){
       this.state = str;
       console.log(str)
       this.initList(str);
       this.mid = str;
     },
+    // search(){
+    //   Axios.get('http://ts.365cf.com/api/creditor/sell/list?from=0&limit=6&callback=&search='+content)
+    //   .then((res)=>{
+    //     console.log("search",res)
+    //   })
+    // },
     initList(n){ 
       
       if(n=="news"){

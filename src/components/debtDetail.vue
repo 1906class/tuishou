@@ -55,7 +55,6 @@ export default {
     },
     mounted(){
         new BScroll('.debtDetail');
-        
     }
 }
 </script>
