@@ -1,23 +1,48 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './pages/Home.vue'
-
+import My from './components/my.vue'
 Vue.use(Router)
-
+import Forget from './pages/forget'
+import Register from './pages/register'
+import Login from './pages/login'
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      component: Home,
+      // beforeEnter:(to,from,next)=>{
+      //   console.log('路由独享',to,from)
+      //   let login=true
+      //   if(login){
+      //     next()
+      //   }else{
+      //     next('/my')
+      //   }
+       
+      // }
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './pages/About.vue')
+      path: '/my',
+      
+      component: My,
+     
+      children:[
+        {
+          path:'forget',
+          component:Forget
+        },
+        {
+          path:'register',
+          component:Register
+        },
+        {
+          path:'login',
+          component:Login
+        }
+      ]
     }
+  
   ]
+ 
 })

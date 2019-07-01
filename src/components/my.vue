@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-      <div class="mine">
+  <div class='my'>
+     <div class="mine">
          <div class="top">
            <div class="money">
              <p class="mon1">总资产（元） <span></span></p>
@@ -19,25 +19,36 @@
            <li><span><img src="/list4.jpg"></span> 我的转让 <span class="tg">&gt</span></li>
            <li><span><img src="/list3.jpg"></span> 我的承接 <span class="tg">&gt</span></li>
            <li><span><img src="/list2.jpg"></span> 资金流水 <span class="tg">&gt</span></li>
-           <li><span><img src="/list1.jpg"></span> 我的实名认证 <span class="tg">&gt</span></li>
+           <li @click="noopen"><span><img src="/list1.jpg"></span> 我的实名认证 <span class="tg">&gt</span></li>
          </ul>
          <p class="quit">退出登录</p>
       </div>
+
+     <router-view></router-view>
   </div>
-  
 </template>
-
 <script>
-
-
-
+import {MessageBox} from 'mint-ui'
 export default {
-}
+ methods:{
+   noopen(){
+     MessageBox.alert('此功能未开放','提示');
+   }
+  },
+   mounted(){
+     let login = false;
+     if(login){
+       this.$router.push('/my') 
+      
+     }else{
+     this.$router.push('/my/login')   
+     }
+   }
+  } 
 </script>
 <style lang="less" scope>
-// http://zqzr.ketao.com/api/
 @import '~style/index.less';
-.home{
+.my{
   .mine{
     font-size:16px;
     .w(375);
@@ -136,6 +147,5 @@ export default {
    }
   
 }
-
 
 </style>
