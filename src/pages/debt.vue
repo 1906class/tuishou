@@ -16,15 +16,15 @@
         <li @click="play('sort')" :class='state=="sort"?"self":""'>
           <p>折扣金</p> 
           <span>
-            <i>&lt;</i>
-            <i>&gt;</i>
+            <!-- <i>&lt;</i> -->
+            <!-- <i>&gt;</i> -->
           </span>
         </li>
         <li @click="play('order')" :class='state=="order"?"self":""'>
           <p>折扣</p>
           <span>
-            <i>&lt;</i>
-            <i>&gt;</i>
+            <!-- <i>&lt;</i> -->
+            <!-- <i>&gt;</i> -->
           </span>
         </li>
         <li @click="toggle">筛选</li>
