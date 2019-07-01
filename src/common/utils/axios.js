@@ -13,7 +13,7 @@ Axios.interceptors.request.use(function (config) {
 Axios.interceptors.response.use(function (response) {
   // Do something with response data
  
-  return response.data.data.list
+  return response
 }, function (error) {
   // Do something with response error
   return Promise.reject(error);

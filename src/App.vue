@@ -13,17 +13,19 @@ export default {
    fnav,
   }
 }
+
 </script>
 
 <style lang="less" scoped>
+@import '~style/index.less';
    #app{
-    width:375px;
+    .w(375);
     position:fixed;
     top:0;
     bottom:0;
-  .fnav{
-    position: absolute;
-    bottom:0
-  }
+    .fnav{
+      position: absolute;
+      bottom:0
+    }
   }
 </style>
