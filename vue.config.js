@@ -15,12 +15,13 @@ module.exports={
         port:3000,
         proxy:{
             "/dev":{
-                target:"http://ustbhuangyi.com",
+                target:"http://ts.365cf.com",
                 changeOrigin:true,
                 pathRewrite:{
                     "^/dev":""
                 }
-            }    
+            },
+           
         }
     }
 }
