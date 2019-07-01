@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import banner from './pages/banner'
 import Debt from './pages/debt.vue'
+import Details from "pages/details"
+import Fund from "pages/fund"
+import My_creditor from "pages/my_creditor"
 
 import My from './components/my.vue'
 Vue.use(Router)
@@ -20,15 +23,12 @@ export default new Router({
       redirect:'/shouye',
       component: banner
     },{
-    
       path: '/debt',
       component: Debt
     },
     {
       path: '/my',
-      
       component: My,
-     
       children:[
         {
           path:'forget',
@@ -43,6 +43,19 @@ export default new Router({
           component:Login
         }
       ]
+      
+    },
+    {
+      path: '/my_creditor',
+      component: My_creditor
+    },
+    {
+      path: '/fund',
+      component: Fund
+    },
+    {
+      path:'/details',
+      component: Details
     }
   
   ]

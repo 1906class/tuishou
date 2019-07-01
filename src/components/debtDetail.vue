@@ -3,6 +3,7 @@
         <ul class="content">
             <li v-for="(item,index) in debtlist"
                 :key="index"
+                @click="todetils"
             >
                 <div class="top">
                     <div class="logo">
@@ -49,12 +50,18 @@ export default {
     props:['list'],
     watch:{
         list(next,prev){
-            // console.log(next,prev)
             this.debtlist = next;
+            // console.log(this.debtlist)
         }
     },
     mounted(){
-        new BScroll('.debtDetail');
+        new BScroll('.debtDetail',{click:true});
+    },
+    methods:{
+        todetils(){
+            console.log(1)
+            this.$router.push("/details")
+        }
     }
 }
 </script>

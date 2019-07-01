@@ -2,7 +2,7 @@
   <div id="app">
    
      <fnav class="fnav"></fnav>
-     <My></My>
+ 
    <router-view></router-view>
     
     
@@ -14,7 +14,7 @@
 export default {
   name: 'app',
   components: {
-   fnav,My
+   fnav
   }
 }
 

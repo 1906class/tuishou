@@ -3,7 +3,7 @@
         <ul class="footernav">
               <router-link active-class="sel" tag="li"  to="/shouye"><i class="iconfont">&#xe61b;</i><p>首页</p></router-link>
               <router-link active-class="sel" tag="li"  to="/debt"><i class="iconfont ">&#xe621;</i><p>债转</p></router-link>
-              <router-link active-class="sel" tag="li"  to="/b"><i class="iconfont ">&#xe66e;</i><p>我的</p></router-link>
+              <router-link active-class="sel" tag="li"  to="/my"><i class="iconfont ">&#xe66e;</i><p>我的</p></router-link>
         </ul>
     </div>
 </template>

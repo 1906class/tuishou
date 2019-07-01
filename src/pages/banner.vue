@@ -42,18 +42,18 @@
             P2P债权
               <b>更多</b>
           </p>
-          <a v-for="(item,index) in ptwop" :key="index" class="p2p" href="##">
+          <a v-for="(item,index) in ptwop" :key="index" class="p2p" @click="todetails" href="##">
             <div class="p2pimgdiv">
               <img :src="item.image" alt />
               <p>{{item.name}}</p>
               <div class="money">
                 <p>
                   转让金额(元)
-                  <b>44389.00</b>
+                  <b>33390.68</b>
                 </p>
                 <p>
                   折扣金额(元)
-                  <b class="color">23342</b>
+                  <b class="color">26712.54</b>
                 </p>
               </div>
               <div class="discount">
@@ -87,6 +87,9 @@ export default {
     tomore(){
       console.log(1)
       this.$router.push("/debt");
+    },
+    todetails(){
+      this.$router.push("/details");
     },
     bannerimage() {
       this.$axios.get("/dev/api/platform/list?from=0&limit=10").then(res => {

@@ -19,11 +19,11 @@
          </div>
          <ul class="list">
            <li><span><img src="/list4.jpg"></span> 我的转让 <span class="tg">&gt</span></li>
-           <li><span><img src="/list3.jpg"></span> 我的承接 <span class="tg">&gt</span></li>
-           <li><span><img src="/list2.jpg"></span> 资金流水 <span class="tg">&gt</span></li>
+           <li @click="tomy_creditor"><span><img src="/list3.jpg"></span> 我的承接 <span class="tg">&gt</span></li>
+           <li @click="tofund"><span><img src="/list2.jpg"></span> 资金流水 <span class="tg">&gt</span></li>
            <li @click="noopen"><span><img src="/list1.jpg"></span> 我的实名认证 <span class="tg">&gt</span></li>
          </ul>
-         <p class="quit">退出登录</p>
+         <p class="quit" @click="nolog">退出登录</p>
       </div>
 
      <router-view></router-view>
@@ -35,10 +35,19 @@ export default {
  methods:{
    noopen(){
      MessageBox.alert('此功能未开放','提示');
+   },
+   tomy_creditor(){
+     this.$router.push("/my_creditor")
+   },
+   tofund(){
+      this.$router.push("/fund")
+   },
+   nolog(){
+      this.$router.push("/souye")
    }
   },
    mounted(){
-     let login = true;
+     let login = false;
      if(login){
        this.$router.push('/my') 
       
