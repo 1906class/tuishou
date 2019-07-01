@@ -62,39 +62,40 @@ export default {
       .h(163);
       background:url(/my_bg.png) repeat-y;
      .top{
+       display: flex;
+       justify-content:space-between; 
       color:#fff;
-     .w(315);
+      .w(375);
       .h(128); 
       .padding(35,30,0,30);
       
       .money{
-          .w(260);
+          .w(250);
           text-align:left;
-          float: left;
+          
           .mon1{
            font-size:14px;
-           .w(260);
+           .w(250);
            .h(22);
            .lh(22)
          }
           .mon2{
            font-size:30px;
-           .w(260);
+           .w(250);
            .h(48);
            .lh(48);
          }
       }
       img{
-        float: right;
         .w(54);
-        .h(54)
+        .h(54);
       }
     }
     }
     
     .reset{
       .w(305);
-      .h(35);
+      .h(65);
       margin:-36px auto 16px;
       background: #fff;
       border-radius:4px;
