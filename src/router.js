@@ -3,8 +3,11 @@ import Router from 'vue-router'
 import banner from './pages/banner'
 import Debt from './pages/debt.vue'
 
+import My from './components/my.vue'
 Vue.use(Router)
-
+import Forget from './pages/forget'
+import Register from './pages/register'
+import Login from './pages/login'
 export default new Router({
   routes: [
     {
@@ -20,6 +23,28 @@ export default new Router({
     
       path: '/debt',
       component: Debt
+    },
+    {
+      path: '/my',
+      
+      component: My,
+     
+      children:[
+        {
+          path:'forget',
+          component:Forget
+        },
+        {
+          path:'register',
+          component:Register
+        },
+        {
+          path:'login',
+          component:Login
+        }
+      ]
     }
+  
   ]
+ 
 })

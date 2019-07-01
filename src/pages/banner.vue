@@ -204,6 +204,7 @@ export default {
       .margin(5, 0, 0, 0);
       background: #fff;
       .padding(0, 0, 0, 10);
+      .padding(0, 10, 0, 0);
       .w(375);
       .h(46);
       .lh(46);
@@ -218,7 +219,7 @@ export default {
     }
     .p2ptille {
       .margin(5, 0, 0, 0);
-      .padding(0, 0, 0, 10);
+      .padding(0, 10, 0, 0);
       background: #fff;
       .w(375);
       .h(46);

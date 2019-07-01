@@ -2,15 +2,19 @@
   <div id="app">
    
      <fnav class="fnav"></fnav>
+     <My></My>
    <router-view></router-view>
+    
+    
   </div>
 </template>
 <script>
  import  fnav from './components/footernav'
+ import  My from './components/my'
 export default {
   name: 'app',
   components: {
-   fnav,
+   fnav,My
   }
 }
 
